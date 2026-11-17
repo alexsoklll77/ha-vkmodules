@@ -1,0 +1,116 @@
+{
+  "title": "VKmodules Ethernet",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect a VKmodule Ethernet controller",
+        "description": "Enter the local TCP server address and port configured on your module.",
+        "data": {
+          "host": "Host or IP address",
+          "port": "TCP port"
+        }
+      },
+      "socket2_variant": {
+        "title": "SOCKET-2 / SOCKET-2W",
+        "description": "Both models report the same hardware type. Enable the analog input only if this is a SOCKET-2W **and** input 0 is already configured as analog in the module's web interface. The analog input supports 0 to 1 V only.",
+        "data": {
+          "analog_input": "Use SOCKET-2W analog input 0"
+        }
+      },
+      "reconfigure": {
+        "title": "Change VKmodule network address",
+        "description": "Only the same physical controller (matching UID) will be accepted.",
+        "data": {
+          "host": "Host or IP address",
+          "port": "TCP port"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to or read the controller.",
+      "unsupported_device": "The detected controller has no documented commands in this integration.",
+      "device_mismatch": "The controller is not the original device. Check the IP address.",
+      "analog_unavailable": "The analog command is unsupported or the device did not respond. Verify SOCKET-2W and analog mode."
+    },
+    "abort": {
+      "already_configured": "This controller is already configured.",
+      "unique_id_mismatch": "Controller identifier does not match."
+    }
+  },
+  "options": {
+    "error": {
+      "analog_unavailable": "Analog input unavailable. Check module type and configuration.",
+      "device_mismatch": "Controller UID changed."
+    },
+    "step": {
+      "init": {
+        "title": "VKmodule input options",
+        "description": "Contact inputs use 0 = closed and 1 = open. You can invert their displayed meaning. Analog mode only applies to SOCKET-2W and must also be set in its own web UI.",
+        "data": {
+          "invert_inputs": "Invert the displayed digital input states",
+          "analog_input": "Treat input 0 as SOCKET-2W analog (0–1 V)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "relay": {
+        "name": "Relay {channel}"
+      }
+    },
+    "binary_sensor": {
+      "input": {
+        "name": "Input {channel}"
+      }
+    },
+    "sensor": {
+      "temperature": {
+        "name": "Temperature {channel}"
+      },
+      "voltage": {
+        "name": "Analog input voltage"
+      }
+    }
+  },
+  "services": {
+    "pulse": {
+      "name": "Pulse relay",
+      "description": "Turn on a relay temporarily using its hardware timer.",
+      "fields": {
+        "duration_ms": {
+          "name": "Duration",
+          "description": "100–25500 ms in 100 ms increments."
+        }
+      }
+    },
+    "configure_input": {
+      "name": "Configure input",
+      "description": "Configure input processing and debounce directly in the module.",
+      "fields": {
+        "enabled": {
+          "name": "Process input",
+          "description": "Enable or disable digital input processing."
+        },
+        "debounce_ms": {
+          "name": "Debounce",
+          "description": "0–5100 ms in 20 ms increments."
+        }
+      }
+    },
+    "set_relay_mask": {
+      "name": "Set all SOCKET-GIANT relays",
+      "description": "Changes all 16 relay states to the specified bit mask.",
+      "fields": {
+        "device_id": {
+          "name": "Controller",
+          "description": "The target SOCKET-GIANT controller."
+        },
+        "mask": {
+          "name": "Relay mask",
+          "description": "Bit 0 is relay 1. Bit 15 is relay 16."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "domain": "vkmodules",
+  "name": "VKmodules Ethernet",
+  "version": "0.4.0-beta.1",
+  "codeowners": [
+    "@alexsoklll77"
+  ],
+  "iot_class": "local_push",
+  "integration_type": "device",
+  "config_flow": true,
+  "requirements": [],
+  "documentation": "https://github.com/alexsoklll77/ha-vkmodules",
+  "issue_tracker": "https://github.com/alexsoklll77/ha-vkmodules/issues"
+}

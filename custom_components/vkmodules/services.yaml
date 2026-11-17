@@ -1,0 +1,66 @@
+pulse:
+  name: Pulse relay
+  description: Energize one relay temporarily using the device's hardware timer (no software turn-off).
+  target:
+    entity:
+      domain: switch
+  fields:
+    duration_ms:
+      name: Duration
+      description: 100–25500 ms, in 100 ms increments.
+      required: true
+      example: 500
+      selector:
+        number:
+          min: 100
+          max: 25500
+          step: 100
+          unit_of_measurement: ms
+          mode: box
+
+configure_input:
+  name: Configure digital input
+  description: Enable or disable input processing and set the device's hardware debounce filter.
+  target:
+    entity:
+      domain: binary_sensor
+  fields:
+    enabled:
+      name: Process input
+      required: true
+      selector:
+        boolean:
+    debounce_ms:
+      name: Debounce
+      description: 0–5100 ms, in 20 ms increments.
+      required: true
+      example: 100
+      selector:
+        number:
+          min: 0
+          max: 5100
+          step: 20
+          unit_of_measurement: ms
+          mode: box
+
+set_relay_mask:
+  name: Set all SOCKET-GIANT relays
+  description: "CAUTION: Replaces the state of ALL 16 relays. Bit 0 controls relay 1, bit 15 controls relay 16."
+  fields:
+    device_id:
+      name: SOCKET-GIANT device
+      required: true
+      selector:
+        device:
+          integration: vkmodules
+    mask:
+      name: 16-bit state mask
+      description: "0 turns all relays off; 65535 turns all on."
+      required: true
+      example: 3
+      selector:
+        number:
+          min: 0
+          max: 65535
+          step: 1
+          mode: box
