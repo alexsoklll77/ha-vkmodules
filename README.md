@@ -33,7 +33,7 @@ The integration detects the module type and creates the appropriate Home Assista
 
 Open **Settings → Devices & services → Add integration → VKmodules Ethernet** and enter the module's IP address and TCP port. Configure the module as a **TCP server** in its web interface; use the actual port configured on your device.
 
-> **Connection limit:** Some VKmodule controllers accept only one TCP client at a time. If another application or the older `socket5` integration is connected to the same module, disconnect it before setting up VKmodules. The two integrations can remain installed side by side.
+> **Connection limit:** Some VKmodule controllers accept only one TCP client at a time. If another application is connected to the same module, disconnect it before setting up VKmodules. The two integrations can remain installed side by side.
 
 ## Available actions
 
@@ -49,5 +49,3 @@ For SOCKET-2W, the analog input must also be enabled in the module's own setting
 
 - [VKmodule Ethernet and Wi-Fi controllers (official product overview)](https://vkmodule.com.ua/Ethernet_ua.html)
 - [VKmodule Ethernet modules — TCP/IP protocol (official PDF, Ukrainian)](https://vkmodule.com.ua/Ethernet/pdf/Protocol%20Ethernet-modules%20Ua.pdf)
-
-This is an **unofficial, community-developed integration** and is not affiliated with or endorsed by VKmodule or Home Assistant.
